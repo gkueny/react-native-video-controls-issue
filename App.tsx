@@ -1,6 +1,14 @@
-import { StatusBar, StyleSheet, useColorScheme } from 'react-native';
+import { useRef } from 'react';
+import {
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useColorScheme,
+  View,
+} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Video from 'react-native-video';
+import Video, { VideoRef } from 'react-native-video';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -16,8 +24,24 @@ function App() {
 const videoUrl =
   'https://test-videos.co.uk/vids/bigbuckbunny/mp4/av1/360/Big_Buck_Bunny_360_10s_1MB.mp4';
 function AppContent() {
+  const ref = useRef<VideoRef>(null);
+
+  const goToFullscreen = () => {
+    ref.current?.presentFullscreenPlayer();
+  };
+
   return (
-    <Video source={{ uri: videoUrl }} style={styles.video} controls={false} />
+    <View style={styles.container}>
+      <Video
+        ref={ref}
+        source={{ uri: videoUrl }}
+        style={styles.video}
+        controls={false}
+      />
+      <TouchableOpacity onPress={goToFullscreen}>
+        <Text>Go to fullscreen</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
