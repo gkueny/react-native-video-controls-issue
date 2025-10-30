@@ -7,13 +7,15 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "patch-package"
   },
   "dependencies": {
+    "patch-package": "^8.0.1",
     "react": "19.1.1",
     "react-native": "0.82.1",
     "react-native-safe-area-context": "^5.5.2",
-    "react-native-video": "^6.17.0"
+    "react-native-video": "6.15.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
