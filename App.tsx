@@ -1,4 +1,11 @@
-import { StatusBar, StyleSheet, useColorScheme } from 'react-native';
+import { useState } from 'react';
+import {
+  StatusBar,
+  StyleSheet,
+  TouchableOpacity,
+  useColorScheme,
+  View,
+} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Video from 'react-native-video';
 
@@ -16,8 +23,20 @@ function App() {
 const videoUrl =
   'https://test-videos.co.uk/vids/bigbuckbunny/mp4/av1/360/Big_Buck_Bunny_360_10s_1MB.mp4';
 function AppContent() {
+  const [isPlaying, setIsPlaying] = useState(true);
+
   return (
-    <Video source={{ uri: videoUrl }} style={styles.video} controls={false} />
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => setIsPlaying(!isPlaying)}
+    >
+      <Video
+        source={{ uri: videoUrl }}
+        style={styles.video}
+        controls={false}
+        paused={!isPlaying}
+      />
+    </TouchableOpacity>
   );
 }
 
