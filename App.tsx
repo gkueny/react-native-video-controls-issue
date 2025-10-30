@@ -1,16 +1,6 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import { StatusBar, StyleSheet, useColorScheme } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Video from 'react-native-video';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -23,21 +13,19 @@ function App() {
   );
 }
 
+const videoUrl =
+  'https://test-videos.co.uk/vids/bigbuckbunny/mp4/av1/360/Big_Buck_Bunny_360_10s_1MB.mp4';
 function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
+    <Video source={{ uri: videoUrl }} style={styles.video} controls={false} />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  video: {
     flex: 1,
   },
 });
